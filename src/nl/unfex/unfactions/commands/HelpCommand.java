@@ -2,6 +2,9 @@ package nl.unfex.unfactions.commands;
 
 import org.bukkit.command.CommandSender;
 
+import nl.unfex.unfactions.Main;
+import nl.unfex.unfactions.utils.ChatUtils;
+
 public class HelpCommand extends ConsoleCommand {
 
 	public HelpCommand(String name, String usage, String description, String permission) {

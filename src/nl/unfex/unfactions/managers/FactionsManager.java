@@ -10,7 +10,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import nl.unfex.unfactions.objects.Faction;
-<<<<<<< HEAD
 import nl.unfex.unfactions.objects.FactionPlayer;
 import nl.unfex.unfactions.objects.FactionRank;
 
