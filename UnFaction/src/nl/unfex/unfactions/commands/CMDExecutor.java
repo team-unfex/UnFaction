@@ -101,7 +101,7 @@ public class CMDExecutor implements CommandExecutor {
 		}
 		return false;
 	}
-	
+
 	public List<ConsoleCommand> getConsoleCommands() {
 		return consoleCommands;
 	}

@@ -13,6 +13,8 @@ public class Main extends JavaPlugin {
 	
 	private PluginManager pm;
 	
+	private CMDExecutor cmdExecutor;
+	
 	// Self-made managers
 	private final SettingsManager settingsManager = SettingsManager.getSettingsManager();
 	private final FactionsManager factionsManager = FactionsManager.getFactionsManager();
@@ -23,6 +25,7 @@ public class Main extends JavaPlugin {
 	
 	public void onEnable() {
 		pm = Bukkit.getPluginManager();
+		cmdExecutor = new CMDExecutor();
 		
 		/* Setting up the config */
 		loadConfig();
@@ -55,6 +58,10 @@ public class Main extends JavaPlugin {
 		settingsManager.getLang().addDefault("en-us.prefix", "&7[&cUn&2Factions&7]");
 		settingsManager.getLang().options().copyDefaults(true);
 		settingsManager.saveLang();
+	}
+	
+	public CMDExecutor getCmdExecutor() {
+		return cmdExecutor;
 	}
 	
 	public static Main getInstance() {

@@ -2,6 +2,7 @@ package nl.unfex.unfactions.objects;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -78,7 +79,7 @@ public class Faction {
 	public List<FactionPlayer> getMembers() {
 		return members;
 	}
-	
+
 	public List<String> getChallengesCompleted() {
 		return challengesCompleted;
 	}

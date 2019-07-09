@@ -2,24 +2,18 @@ package nl.unfex.unfactions.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
-import nl.unfex.unfactions.Main;
-
 public class ScoreboardManager {
-	
-	private Main main;
 	
 	private static ScoreboardManager scoreboardManager;
 	
 	private SettingsManager settingsManager = SettingsManager.getSettingsManager();
 	
-	public void ScoreboardManager() {}
+	private ScoreboardManager() {}
 	
-	@SuppressWarnings("deprecation")
 	public void setup() {
 		org.bukkit.scoreboard.ScoreboardManager manager = Bukkit.getScoreboardManager();
 		Scoreboard board = manager.getNewScoreboard();
@@ -27,12 +21,16 @@ public class ScoreboardManager {
 		if (settingsManager.getConfig().getString("Scoreboard.MainBoard.Enabled") == "Enabled") {
 			setupMainBoard(board);
 		}
+		if (settingsManager.getConfig().getString("Scoreboard.HealthBoard.Enabled") == "Enabled") {
+			setupHealthBoard(board);
+		}
+		if (settingsManager.getConfig().getString("Scoreboard.FoodBoard.Enabled") == "Enabled") {
+			setupFoodBoard(board);
+		}
 		
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			player.setScoreboard(board);
 		}
-		
-		updateHealthFoodBoard();
 	}
 	
 	public void setupMainBoard(Scoreboard board) {
@@ -51,32 +49,6 @@ public class ScoreboardManager {
 		
 		foodObj.setDisplaySlot(DisplaySlot.BELOW_NAME);
 		foodObj.setDisplayName(settingsManager.getConfig().getString("Scoreboard.FoodBoard.DisplayName"));
-	}
-	
-	public void updateHealthFoodBoard() {
-		new BukkitRunnable() {
-			public void run() {
-				int wichBoard = 0;
-				for (Player player : Bukkit.getOnlinePlayers()) {
-					org.bukkit.scoreboard.ScoreboardManager manager = Bukkit.getScoreboardManager();
-					Scoreboard board = manager.getNewScoreboard();
-					
-					if (wichBoard == 0) {
-						if (settingsManager.getConfig().getString("Scoreboard.HealthBoard.Enabled") == "Enabled") {
-							setupHealthBoard(board);
-						}
-						wichBoard =+ 1;
-					}
-					
-					if (wichBoard == 1) {
-						if (settingsManager.getConfig().getString("Scoreboard.FoodBoard.Enabled") == "Enabled") {
-							setupFoodBoard(board);
-						}
-						wichBoard =- 1;
-					}
-				}
-			}
-		}.runTaskTimer(main.getInstance(), 0L, 100L);
 	}
 	
 	public static ScoreboardManager getScoreboardManager() {
