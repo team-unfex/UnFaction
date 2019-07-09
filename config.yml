@@ -1,0 +1,13 @@
+Scoreboard:
+    MainBoard:
+        Enabled: true
+        Title: "&cUn&8Factions"
+        LastLine: "&cEXAMPLE TEXT"
+    
+    HealthBoard:
+        Enabled: true
+        DisplayName: "&c♥ &f%hp%" //player hp: %hp% - max player hp: %maxhp%
+    
+    FoodBoard:
+        Enabled: true
+        DisplayName: "&6🍗 &f%food%" //player food: %food% - max player food: %maxfood%
